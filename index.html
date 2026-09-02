@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HA Local Automation Suggester</title>
+  <title>HA Community Automation Suggester</title>
   <style>
     :root {
       --bg: #111827;
@@ -54,7 +54,7 @@
       justify-content: space-between;
     }
     .card h3 { margin: 0 0 8px 0; font-size: 1.05rem; }
-    .card p { margin: 0; font-size: 0.85rem; line-height: 1.4; }
+    .card p { margin: 0; font-size: 0.85rem; line-height: 1.4; color: #d1d5db; }
     .badge {
       display: inline-block;
       margin-top: 10px;
@@ -65,55 +65,77 @@
       color: var(--accent);
       width: fit-content;
     }
+    .footer-action {
+      margin-top: 30px;
+      text-align: center;
+      padding: 15px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-action a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
 <div class="container">
-  <h1>Local Automation Explorer</h1>
-  <p>Select the devices you have installed to filter compatible automations:</p>
+  <h1>Community Automation Explorer</h1>
+  <p>Select your active devices to discover compatible automation ideas:</p>
 
   <div class="filters">
-    <label><input type="checkbox" id="f-motion" checked onchange="render()"> Motion Sensor</label>
-    <label><input type="checkbox" id="f-light" checked onchange="render()"> Smart Lights</label>
+    <label><input type="checkbox" id="f-motion" checked onchange="render()"> Motion</label>
+    <label><input type="checkbox" id="f-light" checked onchange="render()"> Light</label>
     <label><input type="checkbox" id="f-door" checked onchange="render()"> Door / Contact</label>
-    <label><input type="checkbox" id="f-switch" checked onchange="render()"> Smart Switch/Plug</label>
+    <label><input type="checkbox" id="f-switch" checked onchange="render()"> Switch / Plug</label>
     <label><input type="checkbox" id="f-media" checked onchange="render()"> Media Player</label>
-    <label><input type="checkbox" id="f-climate" checked onchange="render()"> Thermostat</label>
+    <label><input type="checkbox" id="f-climate" checked onchange="render()"> Climate / AC</label>
     <label><input type="checkbox" id="f-lock" checked onchange="render()"> Smart Lock</label>
+    <label><input type="checkbox" id="f-cover" checked onchange="render()"> Cover / Blinds</label>
+    <label><input type="checkbox" id="f-power" checked onchange="render()"> Power Monitor</label>
+    <label><input type="checkbox" id="f-presence" checked onchange="render()"> Presence / Person</label>
+    <label><input type="checkbox" id="f-sun" checked onchange="render()"> Sun Sensor</label>
   </div>
 
   <div class="grid" id="recipes-grid"></div>
+
+  <div class="footer-action">
+    Have an automation idea? <a href="https://github.com/sprillex/ha-automation-ideas/edit/main/recipes.json" target="_blank">+ Add it to recipes.json on GitHub</a>
+  </div>
 </div>
 
 <script>
-const recipes = [
-  { title: "Motion Hallway Light", req: ["motion", "light"], desc: "Turn on hallway light on movement, turn off after 3 min vacancy." },
-  { title: "Midnight Nightlight", req: ["motion", "light"], desc: "Motion between 11 PM and 6 AM dims path lighting to 10%." },
-  { title: "Open Door HVAC Cutoff", req: ["door", "climate"], desc: "If patio door is open > 3 minutes, pause AC/Heating." },
-  { title: "Movie Dimming Mode", req: ["media", "light"], desc: "Dim living room lamps to 20% when TV begins playing media." },
-  { title: "Pantry Door Light", req: ["door", "light"], desc: "Turn on light when pantry door opens; shut off on door close." },
-  { title: "Nightly Security Check", req: ["lock", "door"], desc: "Audit locks and alert if exterior doors are unlatched at 11 PM." },
-  { title: "Closet Auto-Light", req: ["door", "light"], desc: "Instant light when closet opens, turning off immediately on close." },
-  { title: "Desk Follows PC Power", req: ["switch", "light"], desc: "Turn on bias backlights when PC drawing over 25W." },
-  { title: "Arrival Porch Light", req: ["door", "light"], desc: "Exterior porch lights illuminate upon door unlock after dusk." },
-  { title: "Media Pause Accent Light", req: ["media", "light"], desc: "Bring ambient lighting to 40% when TV pauses." }
-];
+let allRecipes = [];
+
+async function loadRecipes() {
+  try {
+    const res = await fetch('recipes.json');
+    allRecipes = await res.json();
+    render();
+  } catch (err) {
+    document.getElementById('recipes-grid').innerHTML = '<p>Could not load recipes catalog.</p>';
+  }
+}
 
 function render() {
-  const motion = document.getElementById('f-motion').checked;
-  const light = document.getElementById('f-light').checked;
-  const door = document.getElementById('f-door').checked;
-  const sw = document.getElementById('f-switch').checked;
-  const media = document.getElementById('f-media').checked;
-  const climate = document.getElementById('f-climate').checked;
-  const lock = document.getElementById('f-lock').checked;
-
-  const userHardware = { motion, light, door, switch: sw, media, climate, lock };
+  const hardware = {
+    motion: document.getElementById('f-motion').checked,
+    light: document.getElementById('f-light').checked,
+    door: document.getElementById('f-door').checked,
+    switch: document.getElementById('f-switch').checked,
+    media: document.getElementById('f-media').checked,
+    climate: document.getElementById('f-climate').checked,
+    lock: document.getElementById('f-lock').checked,
+    cover: document.getElementById('f-cover').checked,
+    power: document.getElementById('f-power').checked,
+    presence: document.getElementById('f-presence').checked,
+    sun: document.getElementById('f-sun').checked
+  };
 
   const grid = document.getElementById('recipes-grid');
   grid.innerHTML = '';
 
-  const matched = recipes.filter(r => r.req.every(item => userHardware[item]));
+  const matched = allRecipes.filter(r => r.requires.every(req => hardware[req]));
 
   if (matched.length === 0) {
     grid.innerHTML = '<p>No matching recipes found for the selected device types.</p>';
@@ -128,13 +150,13 @@ function render() {
         <h3>${item.title}</h3>
         <p>${item.desc}</p>
       </div>
-      <span class="badge">${item.req.join(' + ')}</span>
+      <span class="badge">${item.requires.join(' + ')}</span>
     `;
     grid.appendChild(el);
   });
 }
 
-render();
+loadRecipes();
 </script>
 </body>
 </html>

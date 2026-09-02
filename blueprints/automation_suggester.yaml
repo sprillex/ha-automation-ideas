@@ -1,74 +1,79 @@
 blueprint:
-  name: "Local Automation Suggester & Pack"
-  description: "Select your existing devices using the dropdown menus below to activate popular local automation recipes."
+  name: "Community Auto-Audit Automation Suggester"
+  description: "Audits your entire Home Assistant entity registry and creates a notification of compatible automation ideas."
   domain: automation
-  input:
-    trigger_sensor:
-      name: Trigger Sensor (Motion or Door)
-      description: "Pick a sensor that starts the action."
-      selector:
-        entity:
-          domain: binary_sensor
-          device_class:
-            - motion
-            - door
-            - opening
-    target_device:
-      name: Target Light or Switch
-      description: "Pick the light or switch to control."
-      selector:
-        target:
-          entity:
-            - domain: light
-            - domain: switch
-    off_delay:
-      name: Inactivity Timeout (Minutes)
-      description: "Time to wait before turning off the device after vacancy or door closure."
-      default: 5
-      selector:
-        number:
-          min: 1
-          max: 60
-          unit_of_measurement: minutes
-    night_only:
-      name: Restrict to Night Time Only
-      description: "Only execute when the sun is below the horizon."
-      default: false
-      selector:
-        boolean:
+  input: {}
 
 trigger:
-  - trigger: state
-    entity_id: !input trigger_sensor
-    to: "on"
-    id: sensor_triggered
-  - trigger: state
-    entity_id: !input trigger_sensor
-    to: "off"
-    for:
-      minutes: !input off_delay
-    id: sensor_cleared
-
-condition:
-  - condition: or
-    conditions:
-      - condition: template
-        value_template: "{{ not night_only }}"
-      - condition: template
-        value_template: "{{ night_only and is_state('sun.sun', 'below_horizon') }}"
+  - trigger: homeassistant_started
+    id: startup
+  - trigger: time
+    at: "09:00:00"
+    id: daily_check
+  - trigger: event
+    event_type: "generate_automation_ideas"
+    id: manual_event
 
 action:
-  - choose:
-      - conditions:
-          - condition: trigger
-            id: sensor_triggered
-        sequence:
-          - action: homeassistant.turn_on
-            target: !input target_device
-      - conditions:
-          - condition: trigger
-            id: sensor_cleared
-        sequence:
-          - action: homeassistant.turn_off
-            target: !input target_device
-mode: restart
+  - variables:
+      has_light: "{{ states.light | rejectattr('attributes.entity_id', 'defined') | list | length > 0 }}"
+      has_switch: "{{ states.switch | list | length > 0 }}"
+      has_motion: "{{ states.binary_sensor | selectattr('attributes.device_class', 'defined') | selectattr('attributes.device_class', 'eq', 'motion') | list | length > 0 }}"
+      has_door: "{{ states.binary_sensor | selectattr('attributes.device_class', 'defined') | selectattr('attributes.device_class', 'in', ['door', 'opening', 'garage_door', 'window']) | list | length > 0 }}"
+      has_media: "{{ states.media_player | list | length > 0 }}"
+      has_climate: "{{ states.climate | list | length > 0 }}"
+      has_lock: "{{ states.lock | list | length > 0 }}"
+      has_cover: "{{ states.cover | list | length > 0 }}"
+      has_presence: "{{ states.person | list | length > 0 or states.device_tracker | list | length > 0 }}"
+      has_power: "{{ states.sensor | selectattr('attributes.device_class', 'defined') | selectattr('attributes.device_class', 'eq', 'power') | list | length > 0 }}"
+      has_sun: "{{ states('sun.sun') is defined }}"
+
+      catalog: >
+        {% set rules = [
+          ['Motion-Activated Hallway Lighting', 'Motion sensor trips -> Turn on pathway lights with auto-off after 5 min.', has_motion and has_light],
+          ['Midnight Amber Nightlight', 'Motion between 11 PM and 6 AM -> Dim bathroom/hallway lights to 10% amber.', has_motion and has_light],
+          ['Vacant Room Auto-Off', 'No motion detected for 10 minutes -> Automatically switch off lights.', has_motion and has_light],
+          ['Welcome Home Exterior Lighting', 'First person arrives home after sunset -> Turn on porch & entryway fixtures.', has_presence and has_light and has_sun],
+          ['All-Off on Departure', 'Last person leaves the home zone -> Turn off all lights and non-essential switches.', has_presence and (has_light or has_switch)],
+          ['Open Door HVAC Cutoff', 'Exterior door or window open > 3 minutes -> Pause thermostat heating/cooling.', has_door and has_climate],
+          ['Resume HVAC on Door Close', 'All exterior doors closed after cutoff -> Restore climate schedule.', has_door and has_climate],
+          ['Movie Mode Lighting Sync', 'TV media player changes to playing -> Dim ambient lamps down to 15%.', has_media and has_light],
+          ['Snack Pause Illumination', 'Media player paused during movie -> Raise ambient lights to 40%.', has_media and has_light],
+          ['Left Open Door / Window Alert', 'Exterior door open continuously > 15 minutes -> Send push alert to phones.', has_door],
+          ['Sunrise Blinds Opening', 'Sun rises above horizon -> Open motorized shades/curtains.', has_sun and has_cover],
+          ['Sunset Shade Closure', 'Sun sets below horizon -> Lower motorized blinds for privacy.', has_sun and has_cover],
+          ['Laundry Finished Alert', 'Washer/Dryer smart plug power draw drops below 3W -> Send completion alert.', has_power],
+          ['Nightly Perimeter Lockup', 'Time reaches 10:30 PM -> Check status and automatically lock all smart locks.', has_lock],
+          ['Pantry / Closet Auto-Lighting', 'Door contact sensor opens -> Turn on closet light immediately; off on close.', has_door and has_light],
+          ['Nightly Security Audit', 'Time reaches 11:00 PM -> Send notification if any exterior door or window remains open.', has_door],
+          ['Desk Accent Follows PC', 'Computer monitor or PC plug draws > 30W -> Turn on desk LED light strips.', has_power and has_light],
+          ['Bathroom Humidity Exhaust', 'Bathroom humidity exceeds 70% -> Switch on exhaust fan plug/relay.', has_switch],
+          ['Media Idle Auto-Power', 'TV media player idle > 30 minutes -> Switch off AV receiver & media bar power.', has_media and has_switch],
+          ['Driveway Motion Speaker Chime', 'Driveway or porch motion trips -> Soft audio chime on indoor speaker.', has_motion and has_media]
+        ] %}
+
+        {% set matches = namespace(items=[]) %}
+        {% for rule in rules %}
+          {% if rule[2] %}
+            {% set matches.items = matches.items + [{'title': rule[0], 'detail': rule[1]}] %}
+          {% endif %}
+        {% endfor %}
+        {{ matches.items }}
+
+  - action: persistent_notification.create
+    data:
+      title: "Automation Suggestions for Your Home"
+      notification_id: "auto_device_suggester"
+      message: >
+        {% if catalog | length == 0 %}
+        No common device combinations detected yet. Add lights, sensors, or switches to get started.
+        {% else %}
+        Home Assistant scanned your devices and found **{{ catalog | length }} compatible automation ideas**:
+
+        {% for item in catalog %}
+        - **{{ item.title }}**
+          {{ item.detail }}
+        {% endfor %}
+        {% endif %}
+
+mode: single
