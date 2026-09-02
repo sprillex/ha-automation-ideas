@@ -1,0 +1,122 @@
+[
+  {
+    "id": "motion_hallway_light",
+    "title": "Motion-Activated Hallway Lighting",
+    "desc": "Motion sensor detects movement -> Turn on pathway lights with auto-off after 5 min vacancy.",
+    "requires": ["motion", "light"]
+  },
+  {
+    "id": "midnight_nightlight",
+    "title": "Midnight Amber Nightlight",
+    "desc": "Motion detected between 11 PM and 6 AM -> Dim bathroom/hallway lights to 10% amber to protect night vision.",
+    "requires": ["motion", "light"]
+  },
+  {
+    "id": "vacant_room_off",
+    "title": "Vacant Room Auto-Off",
+    "desc": "No motion detected for 10 minutes -> Automatically switch off lights to save energy.",
+    "requires": ["motion", "light"]
+  },
+  {
+    "id": "welcome_home_exterior",
+    "title": "Welcome Home Exterior Lighting",
+    "desc": "First person arrives home after sunset -> Turn on porch and entryway fixtures.",
+    "requires": ["presence", "light", "sun"]
+  },
+  {
+    "id": "all_off_departure",
+    "title": "All-Off on Departure",
+    "desc": "Last person leaves the home zone -> Turn off all lights and non-essential switches.",
+    "requires": ["presence", "light"]
+  },
+  {
+    "id": "open_door_hvac_cutoff",
+    "title": "Open Door HVAC Cutoff",
+    "desc": "Exterior door or window stays open > 3 minutes -> Pause thermostat heating/cooling.",
+    "requires": ["door", "climate"]
+  },
+  {
+    "id": "resume_hvac_door_closed",
+    "title": "Resume HVAC on Door Close",
+    "desc": "All exterior doors closed after cutoff -> Restore climate schedule.",
+    "requires": ["door", "climate"]
+  },
+  {
+    "id": "movie_mode_dimming",
+    "title": "Movie Mode Lighting Sync",
+    "desc": "TV media player changes to playing -> Dim ambient lamps down to 15%.",
+    "requires": ["media", "light"]
+  },
+  {
+    "id": "snack_pause_accent",
+    "title": "Snack Pause Illumination",
+    "desc": "Media player paused during movie -> Raise ambient lights to 40%.",
+    "requires": ["media", "light"]
+  },
+  {
+    "id": "left_open_door_alert",
+    "title": "Left Open Door / Window Alert",
+    "desc": "Exterior door open continuously > 15 minutes -> Send push alert to phones.",
+    "requires": ["door"]
+  },
+  {
+    "id": "sunrise_blinds_open",
+    "title": "Sunrise Blinds Opening",
+    "desc": "Sun rises above horizon -> Open motorized shades/curtains.",
+    "requires": ["sun", "cover"]
+  },
+  {
+    "id": "sunset_blinds_close",
+    "title": "Sunset Shade Closure",
+    "desc": "Sun sets below horizon -> Lower motorized blinds for privacy.",
+    "requires": ["sun", "cover"]
+  },
+  {
+    "id": "laundry_cycle_finished",
+    "title": "Laundry Finished Alert",
+    "desc": "Washer/Dryer smart plug power draw drops below 3W -> Send completion alert.",
+    "requires": ["power"]
+  },
+  {
+    "id": "nightly_perimeter_lockup",
+    "title": "Nightly Perimeter Lockup",
+    "desc": "Time reaches 10:30 PM -> Check status and automatically lock all smart locks.",
+    "requires": ["lock"]
+  },
+  {
+    "id": "pantry_closet_light",
+    "title": "Pantry / Closet Auto-Lighting",
+    "desc": "Door contact sensor opens -> Turn on closet light immediately; off on close.",
+    "requires": ["door", "light"]
+  },
+  {
+    "id": "nightly_security_audit",
+    "title": "Nightly Security Audit",
+    "desc": "Time reaches 11:00 PM -> Send notification if any exterior door or window remains open.",
+    "requires": ["door"]
+  },
+  {
+    "id": "desk_accent_pc_power",
+    "title": "Desk Accent Follows PC",
+    "desc": "Computer monitor or PC plug draws > 30W -> Turn on desk LED light strips.",
+    "requires": ["power", "light"]
+  },
+  {
+    "id": "bathroom_humidity_exhaust",
+    "title": "Bathroom Humidity Exhaust",
+    "desc": "Bathroom humidity exceeds 70% -> Switch on exhaust fan plug/relay.",
+    "requires": ["switch"]
+  },
+  {
+    "id": "media_idle_power_off",
+    "title": "Media Idle Auto-Power",
+    "desc": "TV media player idle > 30 minutes -> Switch off AV receiver & media bar power.",
+    "requires": ["media", "switch"]
+  },
+  {
+    "id": "driveway_motion_chime",
+    "title": "Driveway Motion Speaker Chime",
+    "desc": "Driveway or porch motion trips -> Soft audio chime on indoor speaker.",
+    "requires": ["motion", "media"]
+  }
+]
