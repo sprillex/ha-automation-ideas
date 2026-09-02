@@ -1,0 +1,72 @@
+[
+  {
+    "id": "yagrasdemond_yaman",
+    "name": "YAMAN - Yet Another Motion Automation (N-th time)",
+    "github_url": "https://github.com/Yagrasdemond/home-assistant-blueprints/blob/main/yaman.yaml",
+    "description": "Comprehensive motion-activated lighting automation with sun conditions, brightness settings, off-delay, and manual override options.",
+    "category": ["motion", "light"]
+  },
+  {
+    "id": "epmatx_awesome_ha_blueprints_hook_light",
+    "name": "Awesome HA Blueprints - Light Hook",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/hooks/light/light.yaml",
+    "description": "Connects controllers (switches, remotes) to light entities with full dimming, color temperature, and scene toggle capabilities.",
+    "category": ["switch", "light"]
+  },
+  {
+    "id": "epmatx_awesome_ha_blueprints_hook_media_player",
+    "name": "Awesome HA Blueprints - Media Player Hook",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/hooks/media_player/media_player.yaml",
+    "description": "Links button remotes and controllers directly to Home Assistant media players for playback, volume, and track control.",
+    "category": ["switch", "media"]
+  },
+  {
+    "id": "epmatx_awesome_ha_blueprints_cover",
+    "name": "Awesome HA Blueprints - Cover Controller Hook",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/hooks/cover/cover.yaml",
+    "description": "Hooks remotes and wall switches to motorized blinds, shades, and garage covers.",
+    "category": ["switch", "cover"]
+  },
+  {
+    "id": "sgx_notify_open_doors_windows",
+    "name": "Notify when door/window left open",
+    "github_url": "https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/notify_leaving_door_open.yaml",
+    "description": "Sends a notification if an exterior door, window, or contact sensor remains open longer than a configured timeout.",
+    "category": ["door"]
+  },
+  {
+    "id": "sgx_low_battery_notifications",
+    "name": "Low Battery Level Notification & Audit",
+    "github_url": "https://github.com/notro/home-assistant-blueprints/blob/main/low_battery_notification.yaml",
+    "description": "Audits all battery-powered entities and sends an alert when any battery percentage drops below a threshold.",
+    "category": ["power"]
+  },
+  {
+    "id": "sgx_appliance_power_monitor",
+    "name": "Appliance Power Monitor & Notification",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/appliance_power_monitor.yaml",
+    "description": "Monitors smart plug power draw to detect when washing machines, dryers, or dishwashers finish their cycle.",
+    "category": ["power"]
+  },
+  {
+    "id": "sgx_motion_illuminance_lighting",
+    "name": "Motion and Illuminance Activated Light",
+    "github_url": "https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml",
+    "description": "Turns on a target light when motion is detected, restricted optionally by ambient illuminance (lux) levels or sun state.",
+    "category": ["motion", "light"]
+  },
+  {
+    "id": "sgx_advanced_thermostat_climate_control",
+    "name": "Window Open HVAC Auto-Pause",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/turn_off_climate_on_open_window.yaml",
+    "description": "Automatically turns off or pauses climate thermostats when contact sensors detect open windows or doors.",
+    "category": ["door", "climate"]
+  },
+  {
+    "id": "sgx_presence_based_room_lighting",
+    "name": "Presence & Motion Lighting Sync",
+    "github_url": "https://github.com/freakshock88/home-assistant-blueprints/blob/main/motion_illumination_presence_lights.yaml",
+    "description": "Manages room lighting using presence sensors and motion sensors with customizable timeouts and illuminance thresholds.",
+    "category": ["motion", "presence", "light"]
+  }
+]
