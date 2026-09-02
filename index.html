@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HA Community Automation Suggester</title>
+  <title>HA Community Automation Suggester & Discovery Directory</title>
   <style>
     :root {
       --bg: #111827;
@@ -11,6 +11,8 @@
       --text: #f3f4f6;
       --accent: #38bdf8;
       --border: #374151;
+      --button-bg: #0284c7;
+      --button-hover: #0369a1;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -22,11 +24,30 @@
     .container { max-width: 900px; margin: auto; }
     h1 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent); }
     p { color: #9ca3af; font-size: 0.95rem; }
+
+    .search-bar {
+      margin: 15px 0 10px 0;
+    }
+    .search-bar input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      outline: none;
+    }
+    .search-bar input:focus {
+      border-color: var(--accent);
+    }
+
     .filters {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin: 15px 0 25px 0;
+      margin: 10px 0 25px 0;
       background: var(--card-bg);
       padding: 15px;
       border-radius: 8px;
@@ -52,12 +73,20 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 12px;
     }
-    .card h3 { margin: 0 0 8px 0; font-size: 1.05rem; }
+    .card h3 { margin: 0 0 6px 0; font-size: 1.05rem; }
     .card p { margin: 0; font-size: 0.85rem; line-height: 1.4; color: #d1d5db; }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 5px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
     .badge {
       display: inline-block;
-      margin-top: 10px;
       padding: 3px 8px;
       border-radius: 4px;
       font-size: 0.75rem;
@@ -65,6 +94,21 @@
       color: var(--accent);
       width: fit-content;
     }
+    .btn-repo {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #ffffff;
+      background: var(--button-bg);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-repo:hover {
+      background: var(--button-hover);
+    }
+
     .footer-action {
       margin-top: 30px;
       text-align: center;
@@ -80,8 +124,12 @@
 </head>
 <body>
 <div class="container">
-  <h1>Community Automation Explorer</h1>
-  <p>Select your active devices to discover compatible automation ideas:</p>
+  <h1>Community Automation Discovery Directory</h1>
+  <p>Select your installed device hardware or search by keyword to discover upstream automation repositories:</p>
+
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Search automation ideas by title or keyword..." oninput="render()">
+  </div>
 
   <div class="filters">
     <label><input type="checkbox" id="f-motion" checked onchange="render()"> Motion</label>
@@ -100,12 +148,21 @@
   <div class="grid" id="recipes-grid"></div>
 
   <div class="footer-action">
-    Have an automation idea? <a href="https://github.com/sprillex/ha-automation-ideas/edit/main/recipes.json" target="_blank">+ Add it to recipes.json on GitHub</a>
+    Have an automation idea or repository to feature? <a href="https://github.com/sprillex/ha-automation-ideas/edit/main/recipes.json" target="_blank">+ Add it to recipes.json on GitHub</a>
   </div>
 </div>
 
 <script>
 let allRecipes = [];
+
+function deriveRepoUrl(item) {
+  if (item.repo_url) return item.repo_url;
+  if (item.github_url) {
+    const match = item.github_url.match(/https:\/\/github\.com\/[^\/]+\/[^\/]+/);
+    if (match) return match[0];
+  }
+  return "https://github.com/sprillex/ha-automation-ideas";
+}
 
 async function loadRecipes() {
   try {
@@ -118,6 +175,8 @@ async function loadRecipes() {
 }
 
 function render() {
+  const query = document.getElementById('search-input').value.toLowerCase().trim();
+
   const hardware = {
     motion: document.getElementById('f-motion').checked,
     light: document.getElementById('f-light').checked,
@@ -135,22 +194,40 @@ function render() {
   const grid = document.getElementById('recipes-grid');
   grid.innerHTML = '';
 
-  const matched = allRecipes.filter(r => r.requires.every(req => hardware[req]));
+  const matched = allRecipes.filter(r => {
+    const req = r.requires || r.category || [];
+    const matchesHardware = req.every(tag => hardware[tag]);
+    const matchesQuery = !query ||
+      (r.title && r.title.toLowerCase().includes(query)) ||
+      (r.desc && r.desc.toLowerCase().includes(query)) ||
+      (r.name && r.name.toLowerCase().includes(query)) ||
+      (r.description && r.description.toLowerCase().includes(query));
+
+    return matchesHardware && matchesQuery;
+  });
 
   if (matched.length === 0) {
-    grid.innerHTML = '<p>No matching recipes found for the selected device types.</p>';
+    grid.innerHTML = '<p>No matching automation recipes found for your current filter and search.</p>';
     return;
   }
 
   matched.forEach(item => {
+    const title = item.title || item.name;
+    const desc = item.desc || item.description;
+    const req = item.requires || item.category || [];
+    const targetUrl = deriveRepoUrl(item);
+
     const el = document.createElement('div');
     el.className = 'card';
     el.innerHTML = `
       <div>
-        <h3>${item.title}</h3>
-        <p>${item.desc}</p>
+        <h3>${title}</h3>
+        <p>${desc}</p>
       </div>
-      <span class="badge">${item.requires.join(' + ')}</span>
+      <div class="card-footer">
+        <span class="badge">${req.join(' + ')}</span>
+        <a href="${targetUrl}" target="_blank" class="btn-repo">View Repository</a>
+      </div>
     `;
     grid.appendChild(el);
   });
