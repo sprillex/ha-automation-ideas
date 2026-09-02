@@ -1,0 +1,74 @@
+blueprint:
+  name: "Local Automation Suggester & Pack"
+  description: "Select your existing devices using the dropdown menus below to activate popular local automation recipes."
+  domain: automation
+  input:
+    trigger_sensor:
+      name: Trigger Sensor (Motion or Door)
+      description: "Pick a sensor that starts the action."
+      selector:
+        entity:
+          domain: binary_sensor
+          device_class:
+            - motion
+            - door
+            - opening
+    target_device:
+      name: Target Light or Switch
+      description: "Pick the light or switch to control."
+      selector:
+        target:
+          entity:
+            - domain: light
+            - domain: switch
+    off_delay:
+      name: Inactivity Timeout (Minutes)
+      description: "Time to wait before turning off the device after vacancy or door closure."
+      default: 5
+      selector:
+        number:
+          min: 1
+          max: 60
+          unit_of_measurement: minutes
+    night_only:
+      name: Restrict to Night Time Only
+      description: "Only execute when the sun is below the horizon."
+      default: false
+      selector:
+        boolean:
+
+trigger:
+  - trigger: state
+    entity_id: !input trigger_sensor
+    to: "on"
+    id: sensor_triggered
+  - trigger: state
+    entity_id: !input trigger_sensor
+    to: "off"
+    for:
+      minutes: !input off_delay
+    id: sensor_cleared
+
+condition:
+  - condition: or
+    conditions:
+      - condition: template
+        value_template: "{{ not night_only }}"
+      - condition: template
+        value_template: "{{ night_only and is_state('sun.sun', 'below_horizon') }}"
+
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: sensor_triggered
+        sequence:
+          - action: homeassistant.turn_on
+            target: !input target_device
+      - conditions:
+          - condition: trigger
+            id: sensor_cleared
+        sequence:
+          - action: homeassistant.turn_off
+            target: !input target_device
+mode: restart
