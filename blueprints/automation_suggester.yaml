@@ -5,7 +5,8 @@ blueprint:
   input: {}
 
 trigger:
-  - trigger: homeassistant_started
+  - trigger: homeassistant
+    event: start
     id: startup
   - trigger: time
     at: "09:00:00"
