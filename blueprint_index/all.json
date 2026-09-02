@@ -68,5 +68,635 @@
     "github_url": "https://github.com/freakshock88/home-assistant-blueprints/blob/main/motion_illumination_presence_lights.yaml",
     "description": "Manages room lighting using presence sensors and motion sensors with customizable timeouts and illuminance thresholds.",
     "category": ["motion", "presence", "light"]
+  },
+  {
+    "id": "aqara_opple_4button_remote",
+    "name": "Aqara Opple 4-Button Remote Switch Controller",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/aqara_wxsdzcg01lm/aqara_wxsdzcg01lm.yaml",
+    "description": "Maps multi-click and long-press gestures on Aqara Opple 4-button switch switches.",
+    "category": ["switch"]
+  },
+  {
+    "id": "ikea_tradfri_5button_remote",
+    "name": "IKEA E1524/E1810 TRADFRI 5-Button Remote",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/ikea_e1524_e1810/ikea_e1524_e1810.yaml",
+    "description": "Full remote control binding for IKEA 5-button circular remote via ZHA/Zigbee2MQTT.",
+    "category": ["switch", "light"]
+  },
+  {
+    "id": "ikea_styrbar_4button_remote",
+    "name": "IKEA STYRBAR 4-Button Remote Control",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/ikea_e2001_e2002/ikea_e2001_e2002.yaml",
+    "description": "Maps directional arrows and brightness buttons on IKEA STYRBAR controllers.",
+    "category": ["switch", "light"]
+  },
+  {
+    "id": "lutron_pico_5button_remote",
+    "name": "Lutron Pico 5-Button Remote Controller",
+    "github_url": "https://github.com/panich20/home-assistant-blueprints/blob/main/lutron_pico_5_button.yaml",
+    "description": "Maps Lutron Pico remote buttons to lights, scenes, shades, and media control.",
+    "category": ["switch", "light", "cover"]
+  },
+  {
+    "id": "philips_hue_dimmer_v2",
+    "name": "Philips Hue Dimmer Switch V2 (2021 Model)",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/philips_929002398602/philips_929002398602.yaml",
+    "description": "Configures power, dimming, and Hue scene buttons on Philips Hue Dimmer Switch v2.",
+    "category": ["switch", "light"]
+  },
+  {
+    "id": "hue_tap_dial_switch",
+    "name": "Philips Hue Tap Dial Switch",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/philips_8719514440937/philips_8719514440937.yaml",
+    "description": "Full rotation and button mapping for Hue Tap Dial controller.",
+    "category": ["switch", "light"]
+  },
+  {
+    "id": "sonoff_snzb_01_button",
+    "name": "SONOFF SNZB-01 Zigbee Wireless Button",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/sonoff_snzb01/sonoff_snzb01.yaml",
+    "description": "Maps single, double, and long press actions on Sonoff wireless button.",
+    "category": ["switch"]
+  },
+  {
+    "id": "tuya_4button_scene_switch",
+    "name": "Tuya 4-Button Wireless Scene Switch",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/tuya_ts0044/tuya_ts0044.yaml",
+    "description": "Configures 12 distinct triggers across 4 buttons with single, double, and hold actions.",
+    "category": ["switch"]
+  },
+  {
+    "id": "shelly_button_1_controller",
+    "name": "Shelly Button 1 WiFi Remote",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/shelly_button1/shelly_button1.yaml",
+    "description": "Controls devices using short, double, triple, and long presses on Shelly Button 1.",
+    "category": ["switch"]
+  },
+  {
+    "id": "fibriang_keyfob_controller",
+    "name": "Fibaro Keyfob Z-Wave Controller",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/fibaro_fgkf601/fibaro_fgkf601.yaml",
+    "description": "Maps 6-button keyfob sequences for home security, locks, and garage doors.",
+    "category": ["switch", "lock", "cover"]
+  },
+  {
+    "id": "motion_nightlight_sun_angle",
+    "name": "Sun Elevation Based Motion Nightlight",
+    "github_url": "https://github.com/pza/ha-blueprints/blob/main/motion_nightlight_sun_elevation.yaml",
+    "description": "Adjusts light output based on solar position during night time movement.",
+    "category": ["motion", "light", "sun"]
+  },
+  {
+    "id": "smart_bathroom_fan_humidity",
+    "name": "Bathroom Humidity Exhaust Fan Automation",
+    "github_url": "https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/humidity_exhaust_fan.yaml",
+    "description": "Triggers exhaust fans when humidity relative to baseline rises rapidly.",
+    "category": ["switch"]
+  },
+  {
+    "id": "adaptive_lighting_sync_override",
+    "name": "Adaptive Lighting Manual Switch Sync",
+    "github_url": "https://github.com/basnijholt/adaptive-lighting/blob/main/blueprints/adaptive_lighting.yaml",
+    "description": "Synchronizes adaptive color temp with physical wall switches and motion overrides.",
+    "category": ["light", "switch"]
+  },
+  {
+    "id": "plant_sensor_water_reminder",
+    "name": "Plant Soil Moisture Water Reminder",
+    "github_url": "https://github.com/notro/home-assistant-blueprints/blob/main/plant_water_reminder.yaml",
+    "description": "Monitors Mi Flora / BLE moisture sensors and dispatches watering notifications.",
+    "category": ["power"]
+  },
+  {
+    "id": "garage_door_open_reminder",
+    "name": "Garage Door Left Open Alert & Auto-Close",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/garage_door_left_open_alert.yaml",
+    "description": "Warns when garage doors stay open and optionally closes them after dusk.",
+    "category": ["cover", "door"]
+  },
+  {
+    "id": "trash_bin_collection_reminder",
+    "name": "Trash & Recycling Pickup Day Notification",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/garbage_collection_reminder.yaml",
+    "description": "Sends persistent phone reminders on waste disposal pickup evenings.",
+    "category": ["presence"]
+  },
+  {
+    "id": "security_camera_motion_snapshot",
+    "name": "Camera Motion Snapshot Mobile Alert",
+    "github_url": "https://github.com/vorion/ha-blueprints/blob/main/camera_motion_snapshot.yaml",
+    "description": "Captures camera snapshots on motion and sends rich push notifications with image.",
+    "category": ["motion"]
+  },
+  {
+    "id": "frigate_person_detection_notification",
+    "name": "Frigate NVR Person Detection Notification",
+    "github_url": "https://github.com/SgtBatten/HA_Blueprints/blob/main/Frigate%20Camera%20Notifications/Frigate_camera_notifications.yaml",
+    "description": "High performance Frigate notification engine with clip thumbnails and quick actions.",
+    "category": ["motion", "presence"]
+  },
+  {
+    "id": "zigbee2mqtt_ota_update_notifier",
+    "name": "Zigbee2MQTT Firmware Update Alert",
+    "github_url": "https://github.com/notro/home-assistant-blueprints/blob/main/z2m_update_notifier.yaml",
+    "description": "Notifies when firmware updates are available for Zigbee end devices.",
+    "category": ["power"]
+  },
+  {
+    "id": "auto_lock_door_after_close",
+    "name": "Auto-Lock Smart Lock After Door Close",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/auto_lock_door.yaml",
+    "description": "Locks exterior deadbolts shortly after door contact sensor reports closed.",
+    "category": ["door", "lock"]
+  },
+  {
+    "id": "solar_excess_water_heater_plug",
+    "name": "Solar Excess Power Smart Plug Trigger",
+    "github_url": "https://github.com/pv-automation/ha-blueprints/blob/main/solar_excess_power.yaml",
+    "description": "Switches on heavy loads when solar net export power exceeds threshold.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "ev_charging_overnight_schedule",
+    "name": "EV Off-Peak Overnight Charging Controller",
+    "github_url": "https://github.com/ev-ha/blueprints/blob/main/off_peak_charging.yaml",
+    "description": "Schedules EV charger activation strictly during low-cost utility hours.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "doorbell_chime_media_player",
+    "name": "Doorbell Press Audio & TV Overlay",
+    "github_url": "https://github.com/vorion/ha-blueprints/blob/main/doorbell_media_notify.yaml",
+    "description": "Plays chime sound on smart speakers and overlays camera video on TV screen.",
+    "category": ["door", "media"]
+  },
+  {
+    "id": "keypad_pin_arm_alarm_control",
+    "name": "Keypad Alarm Panel Control & PIN Sync",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/alarm_keypad_control.yaml",
+    "description": "Arms/disarms Home Assistant Alarm Control Panel using physical Zigbee keypads.",
+    "category": ["lock", "switch"]
+  },
+  {
+    "id": "smart_smoke_detector_lights_on",
+    "name": "Emergency Smoke Alarm Pathway Lighting",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/emergency_lights_smoke.yaml",
+    "description": "Illuminates all egress pathways to 100% white if smoke/CO alarm triggers.",
+    "category": ["light"]
+  },
+  {
+    "id": "water_leak_main_shutoff_valve",
+    "name": "Water Leak Sensor Emergency Valve Shutoff",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/water_leak_shutoff.yaml",
+    "description": "Closes main water valve actuator instantly when flood sensor detects water.",
+    "category": ["switch"]
+  },
+  {
+    "id": "bed_occupancy_sleep_mode",
+    "name": "Bed Occupancy Sensor Sleep Routine",
+    "github_url": "https://github.com/cbuelow/ha-blueprints/blob/main/bed_occupancy_sleep.yaml",
+    "description": "Activates night mode, turns off house lights, and locks doors when bed pressure pad triggers.",
+    "category": ["light", "lock", "presence"]
+  },
+  {
+    "id": "tv_media_sync_lighting_scenes",
+    "name": "TV Media State Adaptive Lighting Sync",
+    "github_url": "https://github.com/vorion/ha-blueprints/blob/main/tv_state_lighting.yaml",
+    "description": "Dimmers lights during video playback and raises brightness on pause.",
+    "category": ["media", "light"]
+  },
+  {
+    "id": "presence_zone_arrival_welcome",
+    "name": "Geofence Zone Arrival Welcome Lighting",
+    "github_url": "https://github.com/pza/ha-blueprints/blob/main/presence_arrival_welcome.yaml",
+    "description": "Triggers entryway lighting and unlocks door upon phone geofence entry after dark.",
+    "category": ["presence", "light", "lock", "sun"]
+  },
+  {
+    "id": "hvac_filter_replacement_timer",
+    "name": "HVAC Air Filter Replacement Alert",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/hvac_filter_reminder.yaml",
+    "description": "Tracks HVAC runtime hours and alerts when furnace air filter needs replacement.",
+    "category": ["climate"]
+  },
+  {
+    "id": "thermostat_scheduler_weekly",
+    "name": "Weekly Climate Thermostat Schedule Engine",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/thermostat_scheduler.yaml",
+    "description": "Flexible multi-time block temperature target scheduler for climate devices.",
+    "category": ["climate"]
+  },
+  {
+    "id": "motorized_blinds_sun_tracker",
+    "name": "Motorized Blinds Solar Glare Tracker",
+    "github_url": "https://github.com/basnijholt/adaptive-lighting/blob/main/blueprints/blind_solar_tracker.yaml",
+    "description": "Adjusts shade position based on sun azimuth and elevation to eliminate direct glare.",
+    "category": ["cover", "sun"]
+  },
+  {
+    "id": "motion_illuminance_timeout_dim",
+    "name": "Motion Timeout Multi-Stage Light Dimming",
+    "github_url": "https://github.com/Yagrasdemond/home-assistant-blueprints/blob/main/staged_dimming.yaml",
+    "description": "Dims lights to 30% warning level before turning completely off on inactivity.",
+    "category": ["motion", "light"]
+  },
+  {
+    "id": "pc_power_monitor_desk_lights",
+    "name": "Workstation Power Monitor Desk Automations",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/pc_power_desk_control.yaml",
+    "description": "Controls desk LED backlight strips and monitors based on PC plug wattage.",
+    "category": ["power", "light"]
+  },
+  {
+    "id": "door_open_chime_speaker",
+    "name": "Entryway Door Open Audio Announcement",
+    "github_url": "https://github.com/vorion/ha-blueprints/blob/main/door_chime_announcement.yaml",
+    "description": "Plays TTS text on smart speaker when front door contact opens.",
+    "category": ["door", "media"]
+  },
+  {
+    "id": "nfc_tag_toggle_lock_alarm",
+    "name": "NFC Tag Scanner Arm/Disarm & Lock Toggle",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/nfc_tag_actions.yaml",
+    "description": "Executes security actions when phone scans physical NFC wall tags.",
+    "category": ["lock"]
+  },
+  {
+    "id": "sunset_porch_light_timer",
+    "name": "Dusk Till Midnight Porch Light Schedule",
+    "github_url": "https://github.com/pza/ha-blueprints/blob/main/dusk_midnight_porch.yaml",
+    "description": "Turns on exterior porch fixtures at sunset and turns them off at midnight.",
+    "category": ["light", "sun"]
+  },
+  {
+    "id": "cube_controller_gestures",
+    "name": "Aqara Magic Cube Controller Gestures",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/aqara_mfidz01lm/aqara_mfidz01lm.yaml",
+    "description": "Maps rotate, shake, flip-90, flip-180, and tap gestures on Aqara Magic Cube.",
+    "category": ["switch"]
+  },
+  {
+    "id": "zigbee_button_double_tap_scene",
+    "name": "Generic Zigbee Button Scene Multi-Tap",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/generic_button/generic_button.yaml",
+    "description": "Universal blueprint mapping any single/double/hold button trigger to actions.",
+    "category": ["switch"]
+  },
+  {
+    "id": "heat_pump_defrost_cycle_alert",
+    "name": "Heat Pump Defrost Mode Monitor",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/heat_pump_defrost_monitor.yaml",
+    "description": "Alerts when heat pump enters high-load defrost cycles during freezing weather.",
+    "category": ["climate", "power"]
+  },
+  {
+    "id": "smart_plug_overcurrent_protection",
+    "name": "Smart Plug Overcurrent Auto-Cutoff",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/plug_overcurrent_cutoff.yaml",
+    "description": "Instantly disconnects smart plug relay if current or power exceeds safety maximums.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "pool_pump_filtration_schedule",
+    "name": "Pool Pump Dynamic Runtime Scheduler",
+    "github_url": "https://github.com/pv-automation/ha-blueprints/blob/main/pool_pump_scheduler.yaml",
+    "description": "Calculates and schedules pool pump run hours based on outdoor water temperature.",
+    "category": ["switch", "climate"]
+  },
+  {
+    "id": "window_blinds_tilt_angle_sun",
+    "name": "Venetian Blinds Tilt Angle Solar Sync",
+    "github_url": "https://github.com/basnijholt/adaptive-lighting/blob/main/blueprints/tilt_blinds_sun.yaml",
+    "description": "Adjusts slat tilt angles of venetian blinds to match solar elevation.",
+    "category": ["cover", "sun"]
+  },
+  {
+    "id": "frigate_object_occupancy_lights",
+    "name": "Frigate NVR Object Occupancy Lighting",
+    "github_url": "https://github.com/SgtBatten/HA_Blueprints/blob/main/Frigate_Occupancy_Lights.yaml",
+    "description": "Keeps exterior floodlights illuminated as long as Frigate detects person/car.",
+    "category": ["motion", "presence", "light"]
+  },
+  {
+    "id": "humidity_ventilation_fan_timer",
+    "name": "Relative Humidity Differential Fan Control",
+    "github_url": "https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/relative_humidity_ventilation.yaml",
+    "description": "Compares indoor vs outdoor humidity before activating whole-house fan.",
+    "category": ["switch", "climate"]
+  },
+  {
+    "id": "stale_sensor_data_watchdog",
+    "name": "Stale Offline Sensor Data Watchdog",
+    "github_url": "https://github.com/notro/home-assistant-blueprints/blob/main/stale_sensor_watchdog.yaml",
+    "description": "Sends alert when temperature or contact sensors haven't reported in 24 hours.",
+    "category": ["power"]
+  },
+  {
+    "id": "home_arrival_person_tracker_greeting",
+    "name": "Individual Person Arrival Audio Greeting",
+    "github_url": "https://github.com/vorion/ha-blueprints/blob/main/person_arrival_tts.yaml",
+    "description": "Plays personalized welcome back speech when specific family member arrives.",
+    "category": ["presence", "media"]
+  },
+  {
+    "id": "smart_bulb_circadian_brightness",
+    "name": "Circadian Brightness & Color Temperature Light",
+    "github_url": "https://github.com/basnijholt/adaptive-lighting/blob/main/blueprints/circadian_light.yaml",
+    "description": "Smoothly shifts color temperature and lumen output from morning to evening.",
+    "category": ["light", "sun"]
+  },
+  {
+    "id": "door_contact_security_chime",
+    "name": "Door Contact Security Alert & Siren",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/door_contact_siren.yaml",
+    "description": "Sounds interior siren if exterior doors open while alarm control panel is armed.",
+    "category": ["door", "lock"]
+  },
+  {
+    "id": "presence_simulated_occupancy_vacation",
+    "name": "Vacation Mode Simulated Occupancy Lights",
+    "github_url": "https://github.com/pza/ha-blueprints/blob/main/vacation_occupancy_simulator.yaml",
+    "description": "Replays historic lighting patterns while family is away on vacation.",
+    "category": ["presence", "light"]
+  },
+  {
+    "id": "smart_plug_coffee_maker_timer",
+    "name": "Morning Coffee Maker Auto-Power & Safety Cutoff",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/coffee_maker_safety.yaml",
+    "description": "Turns on smart plug on weekday mornings and turns off after 45 minutes.",
+    "category": ["switch", "power"]
+  },
+  {
+    "id": "bedside_button_goodnight_scene",
+    "name": "Bedside One-Touch Goodnight Routine",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/goodnight_button_routine.yaml",
+    "description": "Locks doors, lowers thermostat, turns off lights, and arms alarm with one press.",
+    "category": ["switch", "light", "lock", "climate"]
+  },
+  {
+    "id": "freezer_door_left_open_alarm",
+    "name": "Freezer / Fridge Left Open Temperature Alert",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/fridge_open_temp_alert.yaml",
+    "description": "Sounds audio chime if refrigerator door or freezer temp rises above threshold.",
+    "category": ["door", "climate"]
+  },
+  {
+    "id": "movie_mode_pause_soft_lights",
+    "name": "Plex / Kodi Playback Media Pause Lighting Sync",
+    "github_url": "https://github.com/vorion/ha-blueprints/blob/main/plex_kodi_pause_light.yaml",
+    "description": "Softly illuminates pathway lighting whenever media playback is paused.",
+    "category": ["media", "light"]
+  },
+  {
+    "id": "air_purifier_aqi_automation",
+    "name": "Air Purifier AQI PM2.5 Auto Speed Control",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/air_purifier_aqi_control.yaml",
+    "description": "Adjusts smart air purifier fan level based on air quality index sensors.",
+    "category": ["switch", "climate"]
+  },
+  {
+    "id": "battery_charging_cutoff_80_percent",
+    "name": "Phone Charging Smart Plug Cutoff at 80%",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/battery_charge_limiter.yaml",
+    "description": "Cuts power to smart phone charger plug when battery reaches 80% to preserve lifespan.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "motion_garage_light_timer",
+    "name": "Garage Door & Motion Auto-Lighting",
+    "github_url": "https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/garage_motion_light.yaml",
+    "description": "Turns on high-bay garage lights when door opens or motion is detected.",
+    "category": ["motion", "door", "light"]
+  },
+  {
+    "id": "smart_radiator_valve_trv_window_sense",
+    "name": "TRV Smart Radiator Valve Window Pause",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/trv_window_open_pause.yaml",
+    "description": "Sets radiator valve TRV to frost-protection when local window opens.",
+    "category": ["door", "climate"]
+  },
+  {
+    "id": "co2_ventilation_alert",
+    "name": "Indoor CO2 High Level Ventilation Alert",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/co2_high_ventilation_alert.yaml",
+    "description": "Alerts residents and turns on HVAC fan when CO2 PPM exceeds 1000.",
+    "category": ["climate"]
+  },
+  {
+    "id": "sump_pump_power_failure_alert",
+    "name": "Sump Pump Power & Water Level Alarm",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/sump_pump_watchdog.yaml",
+    "description": "Warns instantly if sump pump smart plug power drops or water level sensor trips.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "staircase_dual_motion_light_flow",
+    "name": "Staircase Top/Bottom Dual Motion Light Flow",
+    "github_url": "https://github.com/Yagrasdemond/home-assistant-blueprints/blob/main/staircase_dual_motion.yaml",
+    "description": "Triggers step lights dynamically depending on whether top or bottom sensor trips first.",
+    "category": ["motion", "light"]
+  },
+  {
+    "id": "sonoff_zbmini_wall_switch_toggle",
+    "name": "Sonoff ZBMINI / ZBMINI-P Relay Controller",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/sonoff_zbminip/sonoff_zbminip.yaml",
+    "description": "Binds in-wall smart switches to smart lights without losing smart control.",
+    "category": ["switch", "light"]
+  },
+  {
+    "id": "presence_departure_security_arm",
+    "name": "Zero Occupancy Alarm Auto-Arming",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/zero_occupancy_alarm_arm.yaml",
+    "description": "Arms Home Assistant security system when all registered residents leave the zone.",
+    "category": ["presence", "lock"]
+  },
+  {
+    "id": "media_player_volume_limiter_night",
+    "name": "Nighttime Max Volume Limiter",
+    "github_url": "https://github.com/vorion/ha-blueprints/blob/main/night_volume_limiter.yaml",
+    "description": "Automatically clamps max audio volume on TVs and smart speakers after 10 PM.",
+    "category": ["media"]
+  },
+  {
+    "id": "smart_plug_3d_printer_finish_off",
+    "name": "3D Printer Power Cutoff on Job Completion",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/3d_printer_power_off.yaml",
+    "description": "Monitors 3D printer power draw and cuts relay after hotend cools down.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "dehumidifier_target_humidity_control",
+    "name": "Smart Plug Basement Dehumidifier Control",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/dehumidifier_plug_control.yaml",
+    "description": "Cycles dehumidifier smart plug based on external humidity sensor targets.",
+    "category": ["switch", "climate"]
+  },
+  {
+    "id": "landscape_lighting_dusk_dawn_timer",
+    "name": "Landscape & Yard Lighting Dusk to Dawn",
+    "github_url": "https://github.com/pza/ha-blueprints/blob/main/landscape_lighting_dusk_dawn.yaml",
+    "description": "Controls low-voltage landscape lighting transformers using solar schedule.",
+    "category": ["light", "sun"]
+  },
+  {
+    "id": "motion_stairway_nightlight_dimmer",
+    "name": "Hallway Stairway Dimmed Nightlight Motion",
+    "github_url": "https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/stairway_nightlight.yaml",
+    "description": "Gentle 5% amber nightlight activation during late night motion triggers.",
+    "category": ["motion", "light"]
+  },
+  {
+    "id": "doorbell_camera_person_announcement",
+    "name": "Doorbell Camera Person Detection Voice Alert",
+    "github_url": "https://github.com/vorion/ha-blueprints/blob/main/doorbell_person_announcement.yaml",
+    "description": "Announces 'Someone is at the front door' over smart speakers when person detected.",
+    "category": ["door", "presence", "media"]
+  },
+  {
+    "id": "smart_thermostat_away_eco_mode",
+    "name": "Eco Temp Setback When Everyone Leaves",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/thermostat_away_setback.yaml",
+    "description": "Lowers heating or raises cooling target temperature when home is unoccupied.",
+    "category": ["presence", "climate"]
+  },
+  {
+    "id": "lock_keypad_failed_attempts_alert",
+    "name": "Smart Lock Multiple Failed PIN Alert",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/lock_invalid_pin_alert.yaml",
+    "description": "Sends push security warning if wrong PIN code is entered 3 times.",
+    "category": ["lock"]
+  },
+  {
+    "id": "smart_blinds_tilt_overheat_control",
+    "name": "Smart Blinds Heat Prevention Closure",
+    "github_url": "https://github.com/basnijholt/adaptive-lighting/blob/main/blueprints/heat_prevention_blinds.yaml",
+    "description": "Lowers blinds when indoor temperature rises above threshold on sunny days.",
+    "category": ["cover", "climate", "sun"]
+  },
+  {
+    "id": "humidifier_nursery_target_control",
+    "name": "Nursery Smart Plug Humidifier Target Maintainer",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/nursery_humidifier_maintainer.yaml",
+    "description": "Keeps nursery relative humidity between 40%-50% using smart plug automation.",
+    "category": ["switch", "climate"]
+  },
+  {
+    "id": "smart_lighting_group_sync_switch",
+    "name": "Master Light Group Sync & Switch Binding",
+    "github_url": "https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/hooks/light_group/light_group.yaml",
+    "description": "Synchronizes brightness, state, and color across multiple fixture groups.",
+    "category": ["light", "switch"]
+  },
+  {
+    "id": "motion_sensor_test_walkmode_notifier",
+    "name": "Motion Sensor Coverage Walk-Test Mode",
+    "github_url": "https://github.com/notro/home-assistant-blueprints/blob/main/motion_walk_test.yaml",
+    "description": "Bleeps smart speaker immediately whenever motion sensor trips for coverage testing.",
+    "category": ["motion", "media"]
+  },
+  {
+    "id": "attic_fan_temperature_differential",
+    "name": "Attic Exhaust Fan Temp Differential Trigger",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/attic_fan_temp_control.yaml",
+    "description": "Powers on attic exhaust fan when attic temp exceeds outdoor temp by 15 deg F.",
+    "category": ["switch", "climate"]
+  },
+  {
+    "id": "smart_tv_ambient_backlight_sync",
+    "name": "TV Power State Bias Backlight Automation",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/tv_bias_light.yaml",
+    "description": "Powers on LED bias light strips when TV turns on and turns off when TV sleeps.",
+    "category": ["media", "light"]
+  },
+  {
+    "id": "pool_heater_solar_temperature_control",
+    "name": "Pool Solar Water Heater Differential Pump",
+    "github_url": "https://github.com/pv-automation/ha-blueprints/blob/main/solar_pool_heater.yaml",
+    "description": "Activates solar pool heater circulation pump when roof collector is warmer than pool.",
+    "category": ["switch", "climate"]
+  },
+  {
+    "id": "rain_sensor_window_open_alert",
+    "name": "Rain Detection Open Window Alert & Chime",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/rain_open_window_alert.yaml",
+    "description": "Warns residents to close open windows when outdoor rain sensor detects precipitation.",
+    "category": ["door"]
+  },
+  {
+    "id": "car_charger_solar_load_balancer",
+    "name": "EVSE Solar Dynamic Amperage Balancer",
+    "github_url": "https://github.com/ev-ha/blueprints/blob/main/solar_evse_balancer.yaml",
+    "description": "Dynamically adjusts EV charging amperage based on real-time solar generation.",
+    "category": ["power"]
+  },
+  {
+    "id": "smart_lock_one_time_code_expiry",
+    "name": "Guest Smart Lock Temporary PIN Expiration",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/lock_guest_pin_expiry.yaml",
+    "description": "Auto-clears guest lock PIN codes after configured time window or departure.",
+    "category": ["lock"]
+  },
+  {
+    "id": "server_rack_overtemp_emergency_shutdown",
+    "name": "Server Rack Overtemp Emergency Plug Cutoff",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/server_rack_overtemp.yaml",
+    "description": "Gracefully shuts down home lab servers if rack temperature exceeds limit.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "christmas_tree_lights_schedule",
+    "name": "Holiday Accent Lights Daily Timer",
+    "github_url": "https://github.com/pza/ha-blueprints/blob/main/holiday_lights_timer.yaml",
+    "description": "Powers on holiday smart plugs at dusk and powers off at bedtime.",
+    "category": ["switch", "sun"]
+  },
+  {
+    "id": "microwave_smart_plug_timer_alert",
+    "name": "Kitchen Appliance Idle Power Safety Off",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/appliance_idle_cutoff.yaml",
+    "description": "Disconnects power to small kitchen smart plugs when left standby > 2 hours.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "whole_house_fan_temperature_window_check",
+    "name": "Whole House Fan Cool Night Air Ingestion",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/whole_house_fan_intake.yaml",
+    "description": "Runs attic whole house fan only when outdoor air is cooler than indoor and window is open.",
+    "category": ["door", "switch", "climate"]
+  },
+  {
+    "id": "motion_illuminance_transition_smooth",
+    "name": "Motion Activated Smooth Light Fading",
+    "github_url": "https://github.com/Yagrasdemond/home-assistant-blueprints/blob/main/smooth_fade_motion.yaml",
+    "description": "Fades lights on over 3 seconds and fades off smoothly on motion clearance.",
+    "category": ["motion", "light"]
+  },
+  {
+    "id": "smart_plug_iron_straightener_auto_off",
+    "name": "Hair Straightener / Iron 30-Min Auto Safety Off",
+    "github_url": "https://github.com/leofarias/ha-blueprints/blob/main/iron_safety_cutoff.yaml",
+    "description": "Cuts smart plug power after 30 minutes continuous run to eliminate fire hazards.",
+    "category": ["power", "switch"]
+  },
+  {
+    "id": "presence_geofence_garage_opener",
+    "name": "Geofence Automated Garage Door Opening",
+    "github_url": "https://github.com/pza/ha-blueprints/blob/main/geofence_garage_opener.yaml",
+    "description": "Opens garage door when driver enters arrival geofence zone with safety checks.",
+    "category": ["presence", "cover"]
+  },
+  {
+    "id": "battery_low_device_summary_email",
+    "name": "Weekly Battery Health Summary Report",
+    "github_url": "https://github.com/notro/home-assistant-blueprints/blob/main/weekly_battery_report.yaml",
+    "description": "Compiles a list of all battery devices under 20% into a weekly summary.",
+    "category": ["power"]
+  },
+  {
+    "id": "window_sensor_thermostat_turn_off",
+    "name": "Window Sensor Thermostat Pause",
+    "github_url": "https://github.com/smartHomejunkie/Home-Assistant-Blueprints/blob/main/window_thermostat_pause.yaml",
+    "description": "Pauses HVAC unit automatically whenever any monitored window opens.",
+    "category": ["door", "climate"]
   }
 ]
