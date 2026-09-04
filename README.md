@@ -1,49 +1,102 @@
 # Home Assistant Community Automation Discovery Directory
 
-A zero-YAML, community-driven discovery hub that points Home Assistant users directly to upstream community automation repositories based on installed device hardware.
+A zero-YAML, community-driven discovery directory and hardware auto-audit system for Home Assistant. It points Home Assistant users directly to upstream community automation repositories based on installed device hardware without requiring external AI services.
 
----
+## Features
 
-## 🚀 One-Click Auto-Audit Blueprint Import
+- **Interactive Hardware & Keyword Discovery**: Client-side filtering of automation ideas by installed hardware capabilities (motion, light, door/contact, switch/plug, media player, climate, lock, cover, power monitor, presence, sun) and real-time text search.
+- **One-Click Blueprint Import**: Direct URL redirection badge to import zero-configuration auto-audit blueprints into Home Assistant instances.
+- **Community-Driven JSON Catalog**: Decentralized recipe entries (`recipes.json`) and blueprint indexes (`blueprint_index/all.json`) allowing easy pull-request-based repository submissions.
+- **Automated Home Assistant Device Audit**: Zero-configuration YAML blueprint (`blueprints/automation_suggester.yaml`) that inspects Home Assistant entity registries and generates persistent notifications for matching automation recipes.
+- **Direct Upstream Repository Linking**: Instant navigation to community creator repositories and raw YAML blueprint source files.
 
-Click the badge below to import the zero-configuration auto-audit scanner directly into your Home Assistant instance:
+## Tech Stack & Architecture
 
-[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Fsprillex%2Fha-automation-ideas%2Fblob%2Fmain%2Fblueprints%2Fautomation_suggester.yaml)
+- **Frontend / Client UI**: Vanilla HTML5, CSS3 (CSS custom properties), and JavaScript (ES6+ `fetch` API, DOM manipulation).
+- **Static Hosting & CDN**: GitHub Pages static website hosting.
+- **Data Layer**: Flat JSON database files (`recipes.json`, `blueprint_index/all.json`).
+- **Automation Engine**: Home Assistant Blueprint Schema (YAML) with Jinja2 Templating and HA Entity Registry triggers.
+- **Runtime Requirements**: Any modern HTTP web browser or Home Assistant Webpage Card (Lovelace dashboard iframe integration).
 
-### Manual UI Import Instructions
-1. In Home Assistant, navigate to **Settings** > **Automations & Scenes** > **Blueprints**.
-2. Click **Import Blueprint** in the bottom right corner.
-3. Paste the blueprint URL:
-   `https://github.com/sprillex/ha-automation-ideas/blob/main/blueprints/automation_suggester.yaml`
-4. Click **Preview** and then **Import**.
+## Repository Layout
 
----
+```
+.
+├── README.md                          # Project overview, setup, and usage guide
+├── API.md                             # Comprehensive API and data endpoints documentation
+├── index.html                         # Interactive web application & filtering dashboard
+├── recipes.json                       # Catalog of community automation recipe ideas
+├── blueprints/
+│   └── automation_suggester.yaml     # Home Assistant auto-audit discovery blueprint
+└── blueprint_index/
+    └── all.json                       # Catalog index of popular Home Assistant blueprints
+```
 
-## 💡 About the Discovery Hub
+## Prerequisites & Setup
 
-This project serves as an interactive discovery directory for local, zero-AI automation ideas and community-maintained Home Assistant blueprints:
+### Prerequisites
+- Node.js (v18+) or Python 3.8+ (for local HTTP preview server)
+- Git for version control
+- Home Assistant 2023.8+ (optional, for running the YAML blueprint)
 
-1. **Interactive Dashboard Browser:** Embed `https://sprillex.github.io/ha-automation-ideas/` into your Home Assistant dashboard via a **Webpage Card** to filter automation ideas by installed hardware (Motion, Lights, Climate, Locks, Covers, Power, etc.) and keyword search.
-2. **Direct Upstream Repository Linking:** Each catalog card features a **View Repository** button linking directly to the creator's upstream GitHub project repository so you can review documentation and star the project, plus a **View Blueprint File** secondary link to inspect raw YAML code.
-
----
-
-## 🤝 3-Step Guide to Feature Your Repository
-
-We welcome community creators to feature their automation blueprints and repositories in our catalog!
-
-1. Open [`recipes.json`](recipes.json) on GitHub.
-2. Click the pencil icon (**Edit this file**).
-3. Add your project entry using this JSON format:
-   ```json
-   {
-     "id": "my_unique_automation_id",
-     "title": "Clear Automation Title",
-     "desc": "Short description of triggers and actions.",
-     "requires": ["motion", "light"],
-     "repo_url": "https://github.com/username/repository-name"
-   }
+### Local Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sprillex/ha-automation-ideas.git
+   cd ha-automation-ideas
    ```
-   *Valid `requires` tags:* `motion`, `light`, `door`, `switch`, `media`, `climate`, `lock`, `cover`, `power`, `presence`, `sun`.
 
-4. Submit a Pull Request. Once merged, your project will immediately feature in the web discovery catalog!
+2. No additional compilation or package installation is needed as this project uses native web standards and static files.
+
+## Configuration
+
+This project operates as a client-side static web application with no server-side environment variables or secrets required.
+
+- **Static Asset Relative Fetching**: `index.html` loads relative static files (`recipes.json`). Ensure relative file paths are maintained when deploying or hosting under custom subpaths.
+- **Upstream Repository Links**: Edit `recipes.json` or `blueprint_index/all.json` to configure blueprint URLs, category tags, and creator repository endpoints.
+
+## Running the Application
+
+### Development Server
+You can launch a local web server using Python's built-in HTTP server or Node.js `npx http-server`:
+
+Using Python:
+```bash
+python3 -m http.server 8000
+```
+
+Using Node.js / `http-server`:
+```bash
+npx http-server -p 8000
+```
+
+Access the application in your browser at `http://localhost:8000`.
+
+### Production Deployment
+Deploy the root directory to any static web host (e.g., GitHub Pages, Cloudflare Pages, Netlify, Vercel, or Nginx static server).
+
+## Testing
+
+### Validating JSON Schemas
+Validate that catalog JSON files maintain proper JSON formatting before committing changes:
+
+Using Python:
+```bash
+python3 -m json.tool recipes.json > /dev/null
+python3 -m json.tool blueprint_index/all.json > /dev/null
+```
+
+Using Node.js:
+```bash
+node -e "JSON.parse(require('fs').readFileSync('recipes.json'))"
+node -e "JSON.parse(require('fs').readFileSync('blueprint_index/all.json'))"
+```
+
+### HTML & Lint Checks
+Ensure all HTML tags and JavaScript function references in `index.html` validate cleanly using standard linters (e.g., `htmlhint` or `eslint` if installed).
+
+## API Reference
+
+This repository exposes static JSON data endpoints, blueprint YAML specifications, and client-side querying interfaces for Home Assistant automation discovery.
+
+For complete endpoint paths, data schemas, field validations, HTTP response status codes, JSON response examples, and Home Assistant event interface definitions, please refer to [API.md](./API.md).
